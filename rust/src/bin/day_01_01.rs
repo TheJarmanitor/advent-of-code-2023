@@ -1,7 +1,7 @@
 use std::fs::read_to_string;
 
 fn main() {
-    let text = read_lines("src/input/input_01_01.txt");
+    let text = read_lines("src/input/input_01.txt");
     let mut final_number: i32 = 0;
     for line in text {
         final_number += &get_calibration(&line);
