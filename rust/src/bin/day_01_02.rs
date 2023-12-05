@@ -1,5 +1,6 @@
-use std::fs::read_to_string;
+mod utils;
 use regex::Regex;
+use utils::read_lines;
 
 fn main() {
     let text = read_lines("src/input/input_01.txt");
@@ -13,13 +14,6 @@ fn main() {
     println!("final number: {}", final_number)
 }
 
-fn read_lines(filename: &str) -> Vec<String>{
-    read_to_string(filename)
-        .unwrap()
-        .lines()
-        .map(String::from)
-        .collect()
-}
 
 fn replace_chars(input: &str) -> String {
     let re = Regex::new(r#"(one|two|three|four|five|six|seven|eight|nine)"#).unwrap();

@@ -1,4 +1,6 @@
-use std::fs::read_to_string;
+mod utils;
+
+use utils::read_lines;
 
 fn main() {
     let text = read_lines("src/input/input_01.txt");
@@ -10,13 +12,6 @@ fn main() {
     println!("final number: {}", final_number)
 }
 
-fn read_lines(filename: &str) -> Vec<String>{
-    read_to_string(filename)
-        .unwrap()
-        .lines()
-        .map(String::from)
-        .collect()
-}
 
 fn get_calibration(line: &str) -> i32 {
     let mut num_chars = vec![];
