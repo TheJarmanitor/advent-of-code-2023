@@ -12,7 +12,6 @@ fn main() {
     println!("final number: {}", final_number)
 }
 
-
 fn get_calibration(line: &str) -> i32 {
     let mut num_chars = vec![];
 
