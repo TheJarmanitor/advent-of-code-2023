@@ -21,8 +21,22 @@ struct Game<'a> {
 }
 
 impl<'a> Game<'a> {
-    fn get_max_amounts(&self) -> BTreeMap<&str, u32> {
-        todo!()
+    fn minimum_cube_set(&self) -> u32 {
+        let map: BTreeMap<&str, u32> = BTreeMap::new();
+        self.rounds
+            .iter()
+            .fold(map, |mut acc, round| {
+                for cube in round.iter() {
+                    acc.entry(cube.color)
+                        .and_modify(|v| {
+                            *v = (*v).max(cube.amount);
+                        })
+                        .or_insert(cube.amount);
+                }
+                acc
+            })
+            .values()
+            .product()
     }
 }
 
@@ -31,6 +45,12 @@ pub fn main() {
     let games = parse_games(&input).expect("should parse");
 
     let answer = games.0;
+    let answer = games
+        .1
+        .iter()
+        .map(|game| game.minimum_cube_set())
+        .sum::<u32>()
+        .to_string();
     println!("{}", answer)
 }
 
